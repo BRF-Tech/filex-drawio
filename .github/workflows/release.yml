@@ -1,0 +1,54 @@
+name: Release
+
+# Tag vX.Y.Z (the draw.io version, = filex-app.json's version) → build
+# dist/ui.zip from draw.io's pinned release, check it is the very bundle
+# filex-app.json pins (ui.bundle.sha256 — the build is reproducible), and
+# attach ui.zip + ui.zip.sha256 + filex-app.json to the GitHub release.
+#
+# filex installs from `BRF-Tech/filex-drawio` (a tag, or main): it reads
+# filex-app.json from the repository, downloads ui.bundle.url and refuses a
+# bundle whose sha256 is not ui.bundle.sha256.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: draw.io's release, cached by its pin
+        uses: actions/cache@v4
+        with:
+          path: dist/draw-*.war
+          key: drawio-${{ hashFiles('drawio.lock.json') }}
+      - name: version must match the tag and draw.io
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VER="$(python3 -c "import json; print(json.load(open('filex-app.json', encoding='utf-8'))['version'])")"
+          DRAWIO="$(python3 -c "import json; print(json.load(open('drawio.lock.json', encoding='utf-8'))['version'])")"
+          test "$TAG" = "$VER" || { echo "filex-app.json version $VER != tag $TAG"; exit 1; }
+          test "$VER" = "$DRAWIO" || { echo "filex-app.json version $VER != draw.io $DRAWIO (drawio.lock.json)"; exit 1; }
+      - name: the adapter parses
+        run: node --check filex-adapter.js
+      - name: build (fails when the bundle is not the one filex-app.json pins)
+        run: python3 build.py
+      - name: the manifest points at this release
+        run: |
+          URL="$(python3 -c "import json; print(json.load(open('filex-app.json', encoding='utf-8'))['ui']['bundle']['url'])")"
+          test "$URL" = "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/ui.zip" || { echo "ui.bundle.url $URL is not this release"; exit 1; }
+      - name: release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/ui.zip
+            dist/ui.zip.sha256
+            dist/filex-app.json
+          generate_release_notes: true

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: draw.io's release, cached by its pin
+        uses: actions/cache@v4
+        with:
+          path: dist/draw-*.war
+          key: drawio-${{ hashFiles('drawio.lock.json') }}
+      - name: the adapter parses
+        run: node --check filex-adapter.js
+      - name: manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          m = json.load(open('filex-app.json', encoding='utf-8'))
+          lock = json.load(open('drawio.lock.json', encoding='utf-8'))
+          assert m['manifest_version'] == 1 and m['name'] == 'drawio', m
+          assert m['version'] == lock['version'], (m['version'], lock['version'])
+          assert m['ui'].get('package_fetch') is True
+          assert 'wasm' not in m, 'an interface-only app has no module'
+          PY
+      # The build is reproducible, so a stamped sha256 that is not this
+      # tree's bundle is a real mismatch: build.py fails and says to re-stamp.
+      - name: build (the bundle must be the one filex-app.json pins)
+        run: python3 build.py

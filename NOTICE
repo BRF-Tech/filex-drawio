@@ -1,0 +1,33 @@
+filex-drawio
+Copyright (c) 2026 BRF Tech
+The code of this repository (the adapter, the build, the workflows) is MIT
+licensed; see LICENSE.
+
+This project packages draw.io for filex. The release bundle (ui.zip) contains:
+
+1. draw.io (https://github.com/jgraph/drawio), the static web application of
+   its release — draw.war, version and sha256 pinned in drawio.lock.json.
+   Copyright (c) JGraph Ltd. Licensed under the Apache License, Version 2.0;
+   a copy is at the top of the bundle (LICENSE) and in this repository
+   (LICENSES/drawio-Apache-2.0.txt).
+
+   Parts of draw.io carry licenses of their own, which ship unchanged inside
+   the bundle where draw.io put them:
+     templates/LICENSE        Creative Commons Attribution 4.0 International
+     js/libavoid-js/LICENSE   GNU Lesser General Public License 2.1
+     img/LICENSE, shapes/LICENSE, stencils/LICENSE
+                              JGraph's terms for the icon sets and stencil
+                              libraries
+
+   Changes made to draw.io by this project (Apache License 2.0, section 4b):
+     - WEB-INF/ and META-INF/ (the Java servlet parts) are left out;
+     - two scripts are appended to js/PreConfig.js: the filex interface SDK
+       (vendor/filex-app-ui.iife.js) and filex-adapter.js;
+     - filex/blank.xml, LICENSE and NOTICE are added.
+   No other file of draw.io is changed.
+
+2. @brftech/filex-app-ui (vendor/filex-app-ui.iife.js), the filex interface
+   SDK. Copyright (c) 2026 BRF Tech. MIT license.
+
+"draw.io" is a trademark of JGraph Ltd. This project is not affiliated with,
+endorsed by or sponsored by JGraph Ltd.
