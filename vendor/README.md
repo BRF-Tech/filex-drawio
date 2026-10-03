@@ -1,6 +1,6 @@
 # vendor/
 
-`filex-app-ui.iife.js` — the filex interface SDK, `@brftech/filex-app-ui`,
+`filex-app-ui.iife.js` - the filex interface SDK, `@brftech/filex-app-ui`,
 the IIFE build (`window.FilexAppUI`) from filex 0.48.0 (`packages/app-ui`,
 `pnpm --filter @brftech/filex-app-ui build`). MIT, BRF Tech.
 

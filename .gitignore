@@ -4,3 +4,4 @@ ui.zip
 measure/out/
 node_modules/
 *.log
+.claude/worktrees/

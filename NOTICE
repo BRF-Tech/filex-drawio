@@ -6,7 +6,7 @@ licensed; see LICENSE.
 This project packages draw.io for filex. The release bundle (ui.zip) contains:
 
 1. draw.io (https://github.com/jgraph/drawio), the static web application of
-   its release — draw.war, version and sha256 pinned in drawio.lock.json.
+   its release - draw.war, version and sha256 pinned in drawio.lock.json.
    Copyright (c) JGraph Ltd. Licensed under the Apache License, Version 2.0;
    a copy is at the top of the bundle (LICENSE) and in this repository
    (LICENSES/drawio-Apache-2.0.txt).

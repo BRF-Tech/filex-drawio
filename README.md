@@ -17,7 +17,7 @@ was opened with, through filex.
 | draw.io | **31.5.3** ([release](https://github.com/jgraph/drawio/releases/tag/v31.5.3), pinned by sha256 in [`drawio.lock.json`](drawio.lock.json)) |
 | Package (`ui.zip`) | **47.2 MiB** (49.5 MB) zipped, 150 MB unpacked, 3384 files |
 | filex | **0.48.0** or later (`"filex": ">=0.48.0"`) |
-| License | this repository MIT; draw.io Apache 2.0 — see [NOTICE](NOTICE) |
+| License | this repository MIT; draw.io Apache 2.0 - see [NOTICE](NOTICE) |
 
 ## Install
 
@@ -84,10 +84,15 @@ release refuse a mismatch.
 
 1. Change `drawio.lock.json` (version, url, sha256) and `filex-app.json`'s
    `version` to the new draw.io version.
-2. Run `python build.py --stamp` and commit.
-3. Tag `v<version>` and push the tag. The [release workflow](.github/workflows/release.yml)
+2. Write the version's section in `CHANGELOG.md` (`## <version> - ...`, then
+   what changed). It becomes the release's notes - what filex shows the
+   administrator under **Release notes** when it offers the update.
+3. Run `python build.py --stamp` and commit.
+4. Tag `v<version>` and push the tag. The [release workflow](.github/workflows/release.yml)
    builds `ui.zip`, checks it against the pinned sha256, and attaches
-   `ui.zip`, `ui.zip.sha256` and `filex-app.json` to the GitHub release.
+   `ui.zip`, `ui.zip.sha256` and `filex-app.json` to the GitHub release, whose
+   notes are the version's `CHANGELOG.md` section ([`release_body.py`](release_body.py);
+   a version with no section is not released).
 
 ## Checked in real browsers
 

@@ -176,7 +176,7 @@ def main() -> None:
     pinned = manifest['ui'].get('bundle', {}).get('sha256', '')
     print(f'dist/ui.zip: {files} files, {len(zipped) / (1 << 20):.1f} MiB, sha256 {digest}')
     if pinned and pinned != digest:
-        sys.exit(f'filex-app.json pins ui.bundle.sha256 {pinned}, this tree builds {digest} — run: python build.py --stamp')
+        sys.exit(f'filex-app.json pins ui.bundle.sha256 {pinned}, this tree builds {digest} - run: python build.py --stamp')
 
 
 if __name__ == '__main__':

@@ -34,6 +34,8 @@ jobs:
           assert m['ui'].get('package_fetch') is True
           assert 'wasm' not in m, 'an interface-only app has no module'
           PY
+      - name: unit tests (the release notes come from CHANGELOG.md)
+        run: python3 -m unittest discover -s tests -v
       # The build is reproducible, so a stamped sha256 that is not this
       # tree's bundle is a real mismatch: build.py fails and says to re-stamp.
       - name: build (the bundle must be the one filex-app.json pins)

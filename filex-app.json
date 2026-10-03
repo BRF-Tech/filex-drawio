@@ -49,7 +49,7 @@
   "ui": {
     "bundle": {
       "url": "https://github.com/BRF-Tech/filex-drawio/releases/download/v31.5.3/ui.zip",
-      "sha256": "2ec43b1f0e2a31f24e7bf26900e177dd5591f0e06ad118875ffdf16885012c83"
+      "sha256": "3b4234f526f97ef083e4a63da4e66f6c4083064a362610d589835f1c2febc4cf"
     },
     "package_fetch": true
   },

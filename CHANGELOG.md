@@ -1,6 +1,12 @@
 # Changelog
 
-## 31.5.3 — first release
+## Unreleased
+
+- A release's notes on GitHub are its `CHANGELOG.md` section, so filex's
+  "Review update" says what the version changes (it showed only GitHub's
+  "Full Changelog" line). A version with no section is not released.
+
+## 31.5.3 - first release
 
 - draw.io 31.5.3 as a filex app with its own interface and no module, for
   filex 0.48.0 or later.
