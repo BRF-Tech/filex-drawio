@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
   "name": "drawio",
-  "version": "31.5.3",
+  "version": "32.6.10",
   "filex": ">=0.48.0",
   "label": {
     "en": "draw.io",
@@ -48,8 +48,8 @@
   },
   "ui": {
     "bundle": {
-      "url": "https://github.com/BRF-Tech/filex-drawio/releases/download/v31.5.3/ui.zip",
-      "sha256": "3b4234f526f97ef083e4a63da4e66f6c4083064a362610d589835f1c2febc4cf"
+      "url": "https://github.com/BRF-Tech/filex-drawio/releases/download/v32.6.10/ui.zip",
+      "sha256": "82477313e3e4a9ff8568f50a05096d9f5029eb5e5154a2a14e2fe493348c824e"
     },
     "package_fetch": true
   },

@@ -14,8 +14,8 @@ was opened with, through filex.
 
 | | |
 |---|---|
-| draw.io | **31.5.3** ([release](https://github.com/jgraph/drawio/releases/tag/v31.5.3), pinned by sha256 in [`drawio.lock.json`](drawio.lock.json)) |
-| Package (`ui.zip`) | **47.2 MiB** (49.5 MB) zipped, 150 MB unpacked, 3384 files |
+| draw.io | **32.6.10** ([release](https://github.com/jgraph/drawio/releases/tag/v32.6.10), pinned by sha256 in [`drawio.lock.json`](drawio.lock.json)) |
+| Package (`ui.zip`) | **43.2 MiB** (45.3 MB) zipped, 115 MB unpacked, 3067 files |
 | filex | **0.48.0** or later (`"filex": ">=0.48.0"`) |
 | License | this repository MIT; draw.io Apache 2.0 - see [NOTICE](NOTICE) |
 
@@ -23,7 +23,7 @@ was opened with, through filex.
 
 In filex's admin panel, **Plugins → Apps → Install an app → GitHub
 repository**. Enter the repository `BRF-Tech/filex-drawio` and, if you want a
-particular version, its tag as the ref (`v31.5.3`). filex reads [`filex-app.json`](filex-app.json), downloads
+particular version, its tag as the ref (`v32.6.10`). filex reads [`filex-app.json`](filex-app.json), downloads
 `ui.zip` from this repository's release, and checks it against the sha256
 the manifest pins. A bundle that does not match is refused.
 
@@ -107,7 +107,9 @@ cd measure && npm install && npx playwright-core install chromium firefox webkit
 node measure/drawio-measure.mjs <path to a filex binary> dist/ui.zip
 ```
 
-Last run: draw.io 31.5.3 on a filex 0.48.0 release-candidate build, in Chrome 153, Firefox 150 and WebKit 26.4.
+Last run (2026-11-08): draw.io 32.6.10 on filex 0.59.0 and on filex 0.48.1
+(the oldest filex the manifest allows), the same in both, in Chrome 156,
+Firefox 159 and WebKit 27.2.
 
 | | Chrome | Firefox | WebKit |
 |---|---|---|---|
@@ -116,10 +118,11 @@ Last run: draw.io 31.5.3 on a filex 0.48.0 release-candidate build, in Chrome 15
 | **New document → draw.io diagram**: a draft made from the template, open in draw.io | ✓ | ✓ | ✓ |
 | draw, **Save**, **Save to folder**: the diagram lands in the folder | ✓ | ✓ | ✓ |
 | content-policy violations | 0 | 0 | 0 |
+| failed requests | 0 | 0 | 0 |
 
-draw.io requests a resource named `null` from its package twice (Chrome
-blocks it, WebKit gets a 404). This comes from draw.io itself and has no
-effect.
+draw.io 31.5.3 requested a resource named `null` from its package twice
+(Chrome blocked it, WebKit got a 404). With 32.6.10 no request failed, and
+Chrome's and WebKit's consoles stayed empty.
 
 ## License
 

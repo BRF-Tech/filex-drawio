@@ -21,12 +21,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
       - name: draw.io's release, cached by its pin
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: dist/draw-*.war
           key: drawio-${{ hashFiles('drawio.lock.json') }}
@@ -53,7 +53,7 @@ jobs:
       - name: release notes from CHANGELOG.md
         run: python3 release_body.py "${GITHUB_REF_NAME#v}" > dist/release-notes.md
       - name: release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
         with:
           body_path: dist/release-notes.md
           files: |
