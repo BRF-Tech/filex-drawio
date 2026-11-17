@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- draw.io 32.7.4 (was 32.6.10), draw.io's latest release.
+
 ## 32.6.10 - 2026-11-08
 
 - draw.io 32.6.10 (was 31.5.3), draw.io's latest release. The adapter is
