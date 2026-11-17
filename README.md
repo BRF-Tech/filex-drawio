@@ -14,7 +14,7 @@ was opened with, through filex.
 
 | | |
 |---|---|
-| draw.io | **32.6.10** ([release](https://github.com/jgraph/drawio/releases/tag/v32.6.10), pinned by sha256 in [`drawio.lock.json`](drawio.lock.json)) |
+| draw.io | **32.7.4** ([release](https://github.com/jgraph/drawio/releases/tag/v32.6.10), pinned by sha256 in [`drawio.lock.json`](drawio.lock.json)) |
 | Package (`ui.zip`) | **43.2 MiB** (45.3 MB) zipped, 115 MB unpacked, 3067 files |
 | filex | **0.48.0** or later (`"filex": ">=0.48.0"`) |
 | License | this repository MIT; draw.io Apache 2.0 - see [NOTICE](NOTICE) |
@@ -107,7 +107,7 @@ cd measure && npm install && npx playwright-core install chromium firefox webkit
 node measure/drawio-measure.mjs <path to a filex binary> dist/ui.zip
 ```
 
-Last run (2026-11-08): draw.io 32.6.10 on filex 0.59.0 and on filex 0.48.1
+Last run (2026-11-08): draw.io 32.7.4 on filex 0.59.0 and on filex 0.48.1
 (the oldest filex the manifest allows), the same in both, in Chrome 156,
 Firefox 159 and WebKit 27.2.
 
