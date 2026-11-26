@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- playwright-core 1.65.1 (was 1.65.0).
+
 ## 32.6.10 - 2026-11-08
 
 - draw.io 32.6.10 (was 31.5.3), draw.io's latest release. The adapter is
