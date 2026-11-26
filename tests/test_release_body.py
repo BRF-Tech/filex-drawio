@@ -40,6 +40,18 @@ def sandbox(changelog: str) -> Path:
 class ReleaseBody(unittest.TestCase):
     def test_this_version_is_its_changelog_section(self) -> None:
         version = json.loads((ROOT / "filex-app.json").read_text(encoding="utf-8"))["version"]
+        changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        if changelog_section(changelog, version) is None:
+            # Not released yet. The app's version is draw.io's (build.py), so a draw.io bump moves
+            # filex-app.json in the same commit, and its note waits under "## Unreleased" until the
+            # release commit turns that section into "## <version> - <date>" (filex-apps-bot,
+            # filex Roadmap #375). The tag still needs its own section: release_body.py refuses it.
+            pending = changelog_section(changelog, "Unreleased")
+            self.assertIsNotNone(pending, f'CHANGELOG.md has neither a "## {version}" section nor an Unreleased note')
+            self.assertIn(version, pending, "the Unreleased note does not name the version it waits for")
+            self.assertIn("draw.io", pending)
+            self.assertNotEqual(run(version).returncode, 0, "a version still under Unreleased is not released")
+            return
         out = run(version)
         self.assertEqual(out.returncode, 0, out.stderr.decode("utf-8", "replace"))
         body = out.stdout.decode("utf-8")
